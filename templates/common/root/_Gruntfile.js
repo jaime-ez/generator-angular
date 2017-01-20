@@ -22,6 +22,9 @@ module.exports = function (grunt) {
   // load symlink task
   grunt.loadNpmTasks('grunt-contrib-symlink');
 
+  // load exec task
+  grunt.loadNpmTasks('grunt-exec');
+
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
@@ -602,6 +605,13 @@ module.exports = function (grunt) {
           }
         ]
       }
+    },
+
+    // exec
+    exec: {
+      launch_electron: {
+        command: 'electron app/electron.js'
+      }
     }
   });
 
@@ -611,8 +621,15 @@ module.exports = function (grunt) {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
     }
 
+    if (target === 'electron') {
+      return grunt.task.run([
+        'symlink',
+        'wiredep',
+        'exec:launch_electron'
+      ]);
+    }
+
     grunt.task.run([
-      'symlink',
       'clean:server',
       'wiredep',<% if (typescript) { %>
       'tsd:refresh',<% } %>
