@@ -19,6 +19,9 @@ module.exports = function (grunt) {
     cdnify: 'grunt-google-cdn'
   });
 
+  // load symlink task
+  grunt.loadNpmTasks('grunt-contrib-symlink');
+
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
@@ -504,9 +507,15 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             '*.html',
+            'main.js',
             'images/{,*/}*.{webp}',
             'styles/fonts/{,*/}*.*'
           ]
+        }, {
+          expand: true,
+          cwd: '.',
+          dest: '<%= yeoman.dist %>',
+          src: ['package.json', 'node_modules/**']
         }, {
           expand: true,
           cwd: '.tmp/images',
@@ -566,6 +575,32 @@ module.exports = function (grunt) {
           %>js<% }
           %>',
         singleRun: true
+      }
+    },
+
+    // Symlinks
+    symlink: {
+      options: {
+        // Enable overwrite to delete symlinks before recreating them
+        overwrite: true,
+        // Enable force to overwrite symlinks outside the current working directory
+        force: false
+      },
+      // These examples using "expand" to generate src-dest file mappings:
+      // http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically
+      expanded: {
+        files: [
+          // All child files and directories in "source", starting with "foo-" will
+          // be symlinked into the "build" directory, with the leading "source"
+          // stripped off.
+          {
+            expand: true,
+            overwrite: true,
+            cwd: '.',
+            src: ['bower_components'],
+            dest: 'app/'
+          }
+        ]
       }
     }
   });
