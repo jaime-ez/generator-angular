@@ -612,6 +612,7 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
+      'symlink',
       'clean:server',
       'wiredep',<% if (typescript) { %>
       'tsd:refresh',<% } %>
