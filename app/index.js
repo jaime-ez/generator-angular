@@ -361,6 +361,7 @@ Generator.prototype.packageFiles = function packageFiles() {
     this.template('root/_tsd.json', 'tsd.json');
   }
   this.template('root/README.md', 'README.md');
+  this.template('app/electron.js', 'app/electron.js');
 
 };
 
