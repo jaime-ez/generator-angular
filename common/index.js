@@ -33,6 +33,7 @@ Generator.prototype.setupEnv = function setupEnv() {
   copy('404.html');
   copy('favicon.ico');
   copy('robots.txt');
+  copy('main.js');
   copy('views/main.html');
   this.directory(join('app', 'images'), join(appPath, 'images'));
 };
