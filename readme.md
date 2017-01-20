@@ -1,9 +1,23 @@
+# AngularJS electron enabled generator  
+
+This generator adds the basic requirements needed to develop an electron app based on the 'classic' yeoman angular generator.  
+
+## Usage  
+Same as the original generator, with the extra option of grunt serve:electron that launches the electron app in dev mode with automatic reload once a file changes.  
+
+## Todo  
+- Add tests  
+- figure out why the angular:common task calls the files related to the angular-generator (some path resolve issue?)  
+- Automate build  
+
+<hr>
+
 # AngularJS generator [![Build Status](https://secure.travis-ci.org/yeoman/generator-angular.svg?branch=master)](http://travis-ci.org/yeoman/generator-angular) [![Gitter](https://img.shields.io/badge/Gitter-Join_the_Yeoman_chat_%E2%86%92-00d06f.svg)](https://gitter.im/yeoman/yeoman)
 
 > Yeoman generator for AngularJS - lets you quickly set up a project with sensible defaults and best practices.
 
 There are many starting points for building a new Angular single page app, in addition to this one. You can find
-other options in this list at 
+other options in this list at
 [Yeoman.io](http://yeoman.io/generators).
 
 [Roadmap for upcoming plans/features/fixes](https://github.com/yeoman/generator-angular/issues/553)
@@ -224,7 +238,7 @@ module demoApp {
     export interface IUserScope extends ng.IScope {
         awesomeThings: any[];
     }
-    
+
     export class UserCtrl {
 
         constructor (private $scope:IUserScope) {
