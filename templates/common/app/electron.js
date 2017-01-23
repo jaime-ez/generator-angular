@@ -53,7 +53,7 @@ app.on('ready', () => {
     }
     let winOpts = [{
       bw: mainWindow,
-      res: '*'
+      res: []
     }]
     elemon(appOpts, winOpts)
   }
